@@ -45,7 +45,7 @@ SET default_table_access_method = heap;
 
 
 CREATE TABLE public.users (
-    user_id integer NOT NULL PRIMARY KEY,
+    user_id SERIAL NOT NULL PRIMARY KEY,
     name character varying(22) NOT NULL 
 );
 
@@ -54,75 +54,33 @@ ALTER TABLE public.users OWNER TO freecodecamp;
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT uq_name UNIQUE (name);
 
-CREATE SEQUENCE public.users_user_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
-ALTER TABLE public.users_user_id_seq OWNER TO freecodecamp;
 
---
--- Name: appointments_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
---
-
-ALTER SEQUENCE public.users_user_id_seq OWNED BY public.users.user_id;
 
 
 
 
 CREATE TABLE public.games (
-  game_id integer NOT NULL PRIMARY KEY,
+  game_id SERIAL NOT NULL PRIMARY KEY,
   secret_number integer NOT NULL
 );
 
 ALTER TABLE public.games OWNER TO freecodecamp;
 
-CREATE SEQUENCE public.games_game_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
-ALTER TABLE public.games_game_id_seq OWNER TO freecodecamp;
-
---
--- Name: appointments_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
---
-
-ALTER SEQUENCE public.games_game_id_seq OWNED BY public.games.game_id;
 
 
 CREATE TABLE public.usergames (
-  user_game_id integer NOT NULL PRIMARY KEY,
+  user_game_id SERIAL NOT NULL PRIMARY KEY,
   game_id integer NOT NULL,
-  user_id integer NOT NULL,
-  guesses integer NOT NULL
+  user_id integer NOT NULL
 );
 
 ALTER TABLE public.usergames OWNER TO freecodecamp;
-CREATE SEQUENCE public.usergames_usergame_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
-ALTER TABLE public.usergames_usergame_id_seq OWNER TO freecodecamp;
-
---
--- Name: appointments_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
---
-
-ALTER SEQUENCE public.usergames_usergame_id_seq OWNED BY public.usergames.user_id;
 
 
 ALTER TABLE ONLY public.usergames
